@@ -7,6 +7,6 @@ int main() {
   int num = 0;
   cout << "Enter number: ";
   cin >> num;
-  int sum = digitsum(sum);
+  int sum = digitsum(num);
   cout << "sum of digits: " << sum << endl;
 }
