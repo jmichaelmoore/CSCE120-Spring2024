@@ -14,6 +14,10 @@ int main() {
     }
   } while (num != -1); // only exits with -1
 
-  cout << "average: " << sum/count << endl;
+  cout << "average: ";
+  if (count == 0) 
+    cout << "undefined";
+  else cout << sum/count;
+  cout << endl;
   return 0; // this is optional in main function, I usually don't include it
 }
