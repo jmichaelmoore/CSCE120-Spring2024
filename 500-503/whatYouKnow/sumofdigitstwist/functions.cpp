@@ -7,15 +7,16 @@ int digitsum(int num) {
   num /= 10;
   while (num != 0) {
     int digit = num%10;
-    if (prev%2 == 0) { // is even
-        sum += digit; // sum = sum + digit;
+    if (digit%2 == 0) { // is even
+        sum += prev; // sum = sum + digit;
     }
     else { // is odd
-        sum -= digit; // sum = sum - digit;
+        sum -= prev; // sum = sum - digit;
     }
-    
+    prev = digit;
     num /= 10; // num = num / 10;
   }
+  sum += prev;
   if (isPos) {
     return sum;
   }
