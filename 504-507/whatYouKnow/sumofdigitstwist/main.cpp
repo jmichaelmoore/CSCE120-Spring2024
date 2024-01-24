@@ -1,5 +1,5 @@
 #include <iostream>
-#include "functions.cpp" // custom header files are listed last
+#include "functions.h" // custom header files are listed last
 
 using std::cout, std::cin, std::endl;
 
