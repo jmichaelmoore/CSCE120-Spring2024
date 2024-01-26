@@ -16,7 +16,7 @@ void insert(int val, unsigned int index,
   if (index == CAPACITY) {
     return; // do nothing 
   }
-  if (index > size) {
+  if (index > size) { // move index to end of list
     index = size;
   }
   for (unsigned int i = size; i > index; --i) {
