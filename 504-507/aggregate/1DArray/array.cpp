@@ -41,7 +41,8 @@ int main() {
         cin >> index;
         try {
           insert(num, index, ary, size);
-          size++;
+          if (size < CAPACITY)
+            size++;
         }
         catch (out_of_range &e) {
           cout << e.what() << endl;

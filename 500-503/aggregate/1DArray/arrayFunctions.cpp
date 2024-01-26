@@ -4,6 +4,7 @@
 using std::cin, std::cout, std::endl;
 
 void loadRandom(int ary[], unsigned int size) {
+  // assumes size is less than capacity
   for (unsigned int i=0; i<size; ++i) {
     ary[i] = rand()%100;
   }
@@ -23,7 +24,6 @@ void insert(int val, unsigned int index,
     ary[i] = ary[i-1];
   }
   ary[index] = val;
-
 }
 
 void removeAtIndex(unsigned int index, 
