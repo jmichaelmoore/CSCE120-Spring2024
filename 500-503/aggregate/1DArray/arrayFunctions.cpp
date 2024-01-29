@@ -38,7 +38,13 @@ void removeFirstOf(int val,
 
 int getMax(const int ary[], unsigned int size) {
   // We'll do together
-  return 0;
+  int maxVal = ary[0];
+  for (unsigned int i=1; i<size; ++i) {
+    if (ary[i] > maxVal) {
+      maxVal = ary[i];
+    }
+  }
+  return maxVal;
 }
 
 int getMin(const int ary[], unsigned int size) {
