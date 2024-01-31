@@ -68,7 +68,7 @@ void processImage(char choice, Pixel image[MAX_WIDTH][MAX_HEIGHT])
  *  height: int for height of the image array
  *  return: nothing, but image array should be loaded with values from file
  */
-// Only modify this function where indicated. We'll learn file stuff later.
+// You should complete this function. //
 void loadImage(const string filename, Pixel image[MAX_WIDTH][MAX_HEIGHT], 
                unsigned int width, unsigned int height)
 {
@@ -98,7 +98,15 @@ void loadImage(const string filename, Pixel image[MAX_WIDTH][MAX_HEIGHT],
   ifs >> maxColor;
 
   // read the color values into the 2D array in Column Major Order
-  // We'll do together : add values from file into 2D array
+  for (unsigned int row=0; row<height; ++row) {
+    for (unsigned int col=0; col<width; ++col) {
+      ifs >> image[col][row].r;
+      ifs >> image[col][row].g;
+      ifs >> image[col][row].b;
+    }
+
+  }
+
 }
 
 /*  Function grayscale
@@ -107,13 +115,19 @@ void loadImage(const string filename, Pixel image[MAX_WIDTH][MAX_HEIGHT],
  *  height: int for height of the image array
  *  Return value: none, but image should be modified to be grayscale colors
  */
- // We'll do together
 void grayscaleImage(Pixel image[MAX_WIDTH][MAX_HEIGHT], unsigned int width, unsigned int height)
 {
   cout << "Making grayscale image... " << endl;
   // iterate through 2d image of Pixels and convert them to grayscale
   // use opposite outer loop than load and output just to be different
-}
+    for (unsigned int col=0; col<width; ++col) {
+    for (unsigned int row=0; row<height; ++row) {
+      unsigned int newColor = (image[col][row].r + image[col][row].g + image[col][row].b)/3;
+      image[col][row] = {newColor, newColor, newColor};
+    }
+  }
+
+ }
 
 /*  Function sepiaImage
  *  image: 2d-array of Pixels (structs)
@@ -121,7 +135,7 @@ void grayscaleImage(Pixel image[MAX_WIDTH][MAX_HEIGHT], unsigned int width, unsi
  *  height: int for height of the image array
  *  Return value: none, but image should be modified to be sepia colors
  */
-// You should write this function for more practice. Details in Agenda //
+// You should write this function. //
 void sepiaImage(Pixel image[MAX_WIDTH][MAX_HEIGHT], unsigned int width, unsigned int height)
 {
   cout << "Making sepia image... " << endl;
@@ -148,7 +162,6 @@ void reverseGrayscaleImage(Pixel image[MAX_WIDTH][MAX_HEIGHT], unsigned int widt
  *  height: int for height of the image array
  *  Return value: none, but ppm file should be created
  */
-// Only modify this function where indicated. We'll learn file stuff later.
 void outputImage(const string filename, const Pixel image[MAX_WIDTH][MAX_HEIGHT], unsigned int width, unsigned int height)
 {
   cout << "Outputting image..." << endl;
@@ -170,8 +183,14 @@ void outputImage(const string filename, const Pixel image[MAX_WIDTH][MAX_HEIGHT]
   ofs << 255 << endl;
 
   // output from column major order array into row major PPM file
-  // We'll do together
-  
+  for (unsigned int row=0; row<height; ++row) {
+    for (unsigned int col=0; col<width; ++col) {
+      ofs << image[col][row].r << " ";
+      ofs << image[col][row].g << " ";
+      ofs << image[col][row].b << " ";
+    }
+    ofs << endl;
+  }
 }
 
 /*  Function printMenu
