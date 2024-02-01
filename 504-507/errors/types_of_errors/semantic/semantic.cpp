@@ -13,7 +13,7 @@ int main() {
     if (12 < age || age < 20) {
         cout << "You are a teenager." << endl;
     }
-    else if (age = 21) {
+    else if (age > 21) {
         cout << "You can vote." << endl;
     }
 
