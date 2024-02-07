@@ -115,7 +115,7 @@ bool isSolution(double a, double b, double c, double xReal, double xImag) {
     double real = a*xReal*xReal - a*xImag*xImag + b*xReal + c;
     double imag = -2*a*xReal*xImag - b*xImag;
     double sum = real + imag;
-    cout << "sum: " << sum << endl;
+    cout << "real + imag: " << sum << endl;
     if (abs(sum) < 0.000000001) {
         return true;
     }

@@ -121,6 +121,7 @@ Output “x = “x1real” - “x1img”i”
 bool isSolution(double a, double b, double c, double xReal, double xImag) {
     double real = a*xReal*xReal - a*xImag*xImag + b*xReal + c;
     double imag = -2*a*xReal*xImag - b*xImag;
+    cout << "real + imag: " << real + imag << endl;
     if (fabs(real + imag) < 0.00000001) {
         return true;
     }
