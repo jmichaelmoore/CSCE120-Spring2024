@@ -87,7 +87,7 @@ If disc not equal 0
 Assign x2 to  (-b + sqrt(disc))/(2*a)
 Output “x = “x2
 */
-    double x1 = (-b - sqrt(disc)/(2*a));
+    double x1 = (-b - sqrt(disc))/(2*a);
     cout << "x = " << x1 << endl;
     if (isSolution(a, b, c, x1, 0)) {
         cout << "valid solution" << endl;
@@ -96,7 +96,7 @@ Output “x = “x2
         cout << "invalid solution" << endl;
     }
     if (disc != 0) {
-        double x2 = (-b + sqrt(disc)/(2*a));
+        double x2 = (-b + sqrt(disc))/(2*a);
         cout << "x = " << x2 << endl;
         if (isSolution(a, b, c, x2, 0)) {
             cout << "valid solution" << endl;

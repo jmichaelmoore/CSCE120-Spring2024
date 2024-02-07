@@ -78,11 +78,23 @@ If disc not equal to 0
 Assign x2 to  (b*b - sqrt(disc))/(2*a)
 Output “x = “x2
 */
-    double x1 = (b*b + sqrt(disc)/(2*a));
+    double x1 = (-b + sqrt(disc))/(2*a);
     cout << "x = " << x1 << endl;
+    if (isSolution(a, b, c, x1, 0)) {
+        cout << "valid solution" << endl;
+    }
+    else {
+        cout << "not valid solution" << endl;
+    }
     if (disc != 0) {
-        double x2 = (b*b - sqrt(disc)/(2*a));
+        double x2 = (-b - sqrt(disc))/(2*a);
         cout << "x = " << x2 << endl;
+        if (isSolution(a, b, c, x2, 0)) {
+            cout << "valid solution" << endl;
+        }
+        else {
+            cout << "not valid solution" << endl;
+        }
     }
 }
 
@@ -94,22 +106,25 @@ Output “x = “x1real” + “x1img”i”
 Output “x = “x1real” - “x1img”i”
 */
     disc = fabs(disc);
-    double real = b*b/(2*a);
+    double real = -b/(2*a);
     double img = sqrt(disc)/(2*a);
     cout << "x = " << real << " + " << img << "i" << endl;
     cout << "x = " << real << " - " << img << "i" << endl;
-
-
+    if (isSolution(a, b, c, real, img)) {
+        cout << "valid solution" << endl;
+    }
+    else {
+        cout << "not valid solution" << endl;
+    }
 }
 
 bool isSolution(double a, double b, double c, double xReal, double xImag) {
     double real = a*xReal*xReal - a*xImag*xImag + b*xReal + c;
     double imag = -2*a*xReal*xImag - b*xImag;
     if (fabs(real + imag) < 0.00000001) {
-        cout << "is a solution";
+        return true;
     }
     else {
-        cout << "not a soluction";
+        return false;
     }
-    cout << endl;
 }
