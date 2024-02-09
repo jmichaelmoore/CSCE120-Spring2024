@@ -17,10 +17,21 @@ int main() {
   string vowels = "aeiouAEIOU"; // not including 'y' or 'Y'
   string symbols = "@#$%^&*~"; // set of symbols for replacement
   
-  cout << "Enter phrase: ";
-  getline(cin, text); // get entire line including spaces.
+  //cout << "Enter phrase: ";
+  //getline(cin, text); // get entire line including spaces.
+  text = "Let's get this done!";
   
   // add code to replace vowels with random symbols from set
-  
+  for (size_t i=0; i<vowels.size(); ++i) {
+    size_t position = 0;
+    do {
+      position = text.find_first_of(vowels.at(i));
+      if (position != string::npos) { // do replacement
+        size_t index = rand()%symbols.size();
+        text.at(position) = symbols.at(index);
+      }
+    } while ( position != string::npos);
+  }
+
   cout << "Your modified phrase: " << text << endl;
 }

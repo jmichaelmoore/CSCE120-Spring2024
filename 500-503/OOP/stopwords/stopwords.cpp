@@ -14,6 +14,12 @@ int main() {
     cout << "Original string: " << endl;
     cout << text << endl;
     // TODO: go through stopwords and remove from the file
+    size_t stopwordIndex = 0;
+    while (stopwordIndex < stopwords.length() {
+        string stopword;
+        size_t commaIndex = stopwords.find(",", stopwordIndex);
+        size_t length = string::npos;
+    }
     cout << "Updated string: " << endl;
     cout << text << endl;
 }
