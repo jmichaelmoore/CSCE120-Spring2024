@@ -14,23 +14,22 @@ int main() {
     cout << "Original string: " << endl;
     cout << text << endl;
     // TODO: go through stopwords and remove from the file
-    size_t stopwordIndex = 0;
+    size_t stopwordIndex = 0; // keeps track of where in the stopwords we are
     while (stopwordIndex < stopwords.length()) {
-        size_t commaIndex = stopwords.find(",", stopwordIndex);
-        string stopword;
-        size_t length = string::npos;
-        if (commaIndex != string::npos) {
-            length = commaIndex - stopwordIndex;
+        size_t commaIndex = stopwords.find(",", stopwordIndex); // get index of first comma
+        size_t length = string::npos; // initialize to value used if not found
+        if (commaIndex != string::npos) { // if we found a comma
+            length = commaIndex - stopwordIndex; // calculate length of the stopword to use in .substr method
         }
-        stopword = stopwords.substr(stopwordIndex, length);
-        size_t stopwordCount = countString(stopword, text);
+        string stopword = stopwords.substr(stopwordIndex, length); // extract the stopword
+        size_t stopwordCount = countString(stopword, text); // count the number of stopwords in the string
         cout << "'" << stopword << "': " << stopwordCount << endl;
-        text = removeString(stopword, text);
-        if (commaIndex != string::npos) {
-            stopwordIndex += length + 1;
+        text = removeString(stopword, text); // remove all of the instances
+        if (commaIndex != string::npos) { // set up to process next stopword
+            stopwordIndex += length + 1; // lenght of the stopword plus one for the comma after it
         }
-        else {
-            stopwordIndex = string::npos; // stopwords.length()
+        else { // set up to exit loop
+            stopwordIndex = string::npos; // stopwords.length() // forces us out of the loop
         }
         // cout << "stopwordIndex: " << stopwordIndex << endl;
         // stopwordIndex = stopwordIndex + length + 1
