@@ -1,10 +1,14 @@
 #include <iostream>
 #include "arrayFunctions.h"
+#include <stdexcept>
 
 using std::cin, std::cout, std::endl;
 
 void loadRandom(int ary[], unsigned int size) {
   // assumes size is less than capacity
+  if (size > CAPACITY) {
+    throw std::out_of_range("size cannot be greater than the capacity.");
+  }
   for (unsigned int i=0; i<size; ++i) {
     ary[i] = rand()%100;
   }
@@ -14,8 +18,11 @@ void loadRandom(int ary[], unsigned int size) {
 void insert(int val, unsigned int index, 
           int ary[], unsigned int size) {
   // We'll do together
-  if (index == CAPACITY) {
-    return; // do nothing 
+  // if (index == CAPACITY) {
+  //   return; // do nothing 
+  // }
+  if (index >= CAPACITY) {
+    throw std::out_of_range("cannot insert at index greater than capacity");
   }
   if (index > size) { // move index to end of list
     index = size;
@@ -28,7 +35,9 @@ void insert(int val, unsigned int index,
 
 void removeAtIndex(unsigned int index, 
           int ary[], unsigned int size) {
-
+  if (index >= size) {
+    throw std::out_of_range("index outside the boinds of the array");
+  }
 }
 
 void removeFirstOf(int val, 
