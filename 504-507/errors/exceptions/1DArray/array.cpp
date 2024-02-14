@@ -32,7 +32,12 @@ int main() {
       case 'L':
         cout << "Input number of random values to load: ";
         cin >> size;
-        loadRandom(ary, size);
+        try {
+          loadRandom(ary, size);
+        }
+        catch (std::out_of_range &e) {
+          cout << e.what() << endl;
+        }
         break;
       case 'I':
         cout << "Input value to insert: ";
@@ -84,14 +89,9 @@ int main() {
       case 'C':
         cout << "Input value to delete: ";
         cin >> num;
-        try {
-          cout << num << " appears " << countVal(num, ary, size);
-          cout << " times" << endl;
-          size++;
-        }
-        catch (out_of_range &e) {
-          cout << e.what() << endl;
-        }
+        cout << num << " appears " << countVal(num, ary, size);
+        cout << " times" << endl;
+        size++;
         break;
       case 'P':
         print(ary, size);
