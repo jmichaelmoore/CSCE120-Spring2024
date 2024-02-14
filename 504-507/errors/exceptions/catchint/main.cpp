@@ -34,8 +34,8 @@ int main() {
     switch (tolower(version)) {
         case 'a':
             try {
-                y();
-                z();
+                y(); // throws even number
+                z(); // throws odd number
             }
             catch (int e) { // we don't need & here
                 errorMsg(e);
@@ -43,13 +43,13 @@ int main() {
             break;
         case 'b':
             try {
-                y();
+                y(); // throws even number
             }
             catch (int e) { // we don't need & here
                 errorMsg(e);
             }
             try {
-                z();
+                z(); // throws odd number
             }
             catch (int e) { // we don't need & here
                 errorMsg(e);
