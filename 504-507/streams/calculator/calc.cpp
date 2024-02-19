@@ -3,6 +3,13 @@
 
 using std::cin, std::cout, std::endl, std::string;
 
+string formatResult(double a, double b, char op, double result) {
+    std::ostringstream oss;
+    oss << a << " " << op << " " << b << " = " << result;
+    string retVal = oss.str();
+    return retVal;
+}
+
 int main() {
     string line;
     cout << "Enter equation in one line: " << endl;
@@ -13,6 +20,18 @@ int main() {
     double secondNum = 0;
     char op = ' ';
     // set up string steram
+    std::istringstream iss(line);
+    iss >> firstNum;
+    iss >> op;
+    iss >> secondNum;
+    // iss >> firstnum >> op >> secondnum;
     // determine what to do based on the op
-    cout << "result: " << result;
+    switch (op) {
+        case '+': result = firstNum + secondNum; break;
+        case '-': result = firstNum - secondNum; break;
+        case '*': result = firstNum * secondNum; break;
+        case '/': result = firstNum / secondNum; break;
+    }
+    cout << "result: " << result << endl;
+    cout << formatResult(firstNum, secondNum, op, result) << endl;
 }
