@@ -9,9 +9,9 @@ int main()
     unsigned int no_lines = 0;
     cin >> no_lines;
 
-    while (cin.fail() || no_lines > 80 ||) {
+    while (cin.fail() || no_lines > 80 || no_lines < 1) {
         if (!cin.fail()) { // failed due to no_lines being incorrect
-            cout << "number must be <= 80" << endl;
+            cout << "number must be between 1 and 80" << endl;
         }
         if (cin.bad()) { // check first since bad also makes fail true
             cout << "unexpected error, please try again." << endl;
