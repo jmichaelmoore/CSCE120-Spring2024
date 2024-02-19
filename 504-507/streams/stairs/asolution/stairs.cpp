@@ -6,10 +6,10 @@ using std::cin, std::cout, std::endl;
 int main()
 {
     cout << "Please provide a number of lines to print the stair-case pattern : ";
-    unsigned int no_lines;
+    unsigned int no_lines = 0;
     cin >> no_lines;
 
-    while (cin.fail() || no_lines > 80) {
+    while (cin.fail() || no_lines > 80 ||) {
         if (!cin.fail()) { // failed due to no_lines being incorrect
             cout << "number must be <= 80" << endl;
         }
