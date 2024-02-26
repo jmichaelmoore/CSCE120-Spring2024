@@ -10,7 +10,8 @@ string getMiddleThird(string& str) {
     for (size_t i=third; i<(third*2); ++i) {
         retStr += str.at(i);
     }
-    str.at(str.size()/2) = '?';     // side effect
+    // side effect to fix
+    str.at(str.size()/2) = '?';
     return retStr;
 }
 

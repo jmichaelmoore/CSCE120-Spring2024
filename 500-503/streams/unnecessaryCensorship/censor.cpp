@@ -73,6 +73,6 @@ int main() {
 				position = line.find(censorWord);
 			}
 		}
-		censorOut << line;
+		censorOut << oLine << endl;
 	}
 }
