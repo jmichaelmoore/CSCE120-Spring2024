@@ -45,7 +45,7 @@ int main() {
 	// get list of words to censor from file
 	string censorWords;
 	string censorWord;
-	while (censorIn >> censorWord) {
+	while (censorIn >> censorWord) { // checking is built in here
 		censorWords += (" " + tolower(censorWord));
 	}
 
@@ -61,6 +61,9 @@ int main() {
 	while (!origIn.eof()) {
 		string line;
 		getline(origIn, line);
+		if (origIn.fail()) {
+			return 1;  // on hw probably throw an exception
+		}
 		string lineOut = line;
 		line = tolower(line);
 		istringstream censorWds(censorWords);

@@ -14,7 +14,7 @@ void loadRandom(int ary[], int size) {
 }
 
 void insert(int val, unsigned int index, 
-          int ary[], unsigned int size) {
+          int ary[], unsigned int& size) {
   // assume size index <= size
   // assume size < capacity
   // slide values over
@@ -23,15 +23,16 @@ void insert(int val, unsigned int index,
     ary[size-i] = ary[size-i-1];
   }
   ary[index] = val;
+  size++;
 }
 
 void removeAtIndex(unsigned int index, 
-          int ary[], unsigned int size) {
+          int ary[], unsigned int& size) {
   // do on your own
 }
 
 void removeFirstOf(int val, 
-          int ary[], unsigned int size) {
+          int ary[], unsigned int& size) {
   // do on your own
 }
 
