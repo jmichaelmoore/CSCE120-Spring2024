@@ -4,14 +4,14 @@
 
 using std::cout, std::endl, std::cin, std::string;
 
-string getMiddleThird(string& str) {
+string getMiddleThird(const string& str) {
     string retStr;
     size_t third = str.size()/3; // will accept there may be some rounding errors
     for (size_t i=third; i<(third*2); ++i) {
         retStr += str.at(i);
     }
     // side effect to fix
-    str.at(str.size()/2) = '?';
+    // str.at(str.size()/2) = '?';
     return retStr;
 }
 

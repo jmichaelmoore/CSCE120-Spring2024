@@ -33,7 +33,7 @@ int main() {
 		cout << "Unable to open: " << censorWordsFilename << endl;
 		return 1; // return with error
 	}
-	if (!origIn.is_open()) {
+	if (!origIn.is_open()) { 
 		cout << "Unable to open: " << originalTextFilename << endl;
 		return 1; // return with error
 	}
@@ -45,7 +45,7 @@ int main() {
 	// get list of words to censor from file
 	string censorWords;
 	string censorWord;
-	while (censorIn>>censorWord) {
+	while (censorIn>>censorWord) { // built in if you got something
 		censorWords += (" " + tolower(censorWord));
 	}
 
@@ -61,6 +61,9 @@ int main() {
 	while (!origIn.eof()) {
 		string line;
 		getline(origIn, line);
+		if (origIn.bad()) {
+			return 1; // in hw throw an exception
+		}
 		string oLine = line;
 		line = tolower(line);
 		istringstream iCensorW(censorWords);

@@ -41,7 +41,7 @@ int main() {
       cin >> index;
       try {
         insert(num, index, ary, size);
-        size++;
+        //size++;
       }
       catch (out_of_range &e) {
         cout << e.what() << endl;
@@ -53,7 +53,7 @@ int main() {
       cin >> index;
       try {
         removeAtIndex(index, ary, size);
-        size--;
+        //size--;
       }
       catch (out_of_range &e) {
         cout << e.what() << endl;
@@ -64,7 +64,7 @@ int main() {
       cin >> num;
       try {
         removeFirstOf(num, ary, size);
-        size--;
+        //size--;
       }
       catch (out_of_range &e) {
         cout << e.what() << endl;
@@ -73,12 +73,10 @@ int main() {
     case 'X':
       cout << "Max: " << getMax(ary, size);
       cout << endl;
-      size++;
       break;
     case 'N':
       cout << "Min: " << getMin(ary, size);
       cout << endl;
-      size++;
       break;
     case 'C':
       cout << "Input value to delete: ";
@@ -86,7 +84,6 @@ int main() {
       try {
         cout << num << " appears " << countVal(num, ary, size);
         cout << " times" << endl;
-        size++;
       }
       catch (out_of_range &e) {
         cout << e.what() << endl;
