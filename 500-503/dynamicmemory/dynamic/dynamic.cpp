@@ -12,6 +12,7 @@ int main() {
     cout << "Address of j: " << &j << endl;
     cout << "*j (value at address pointed to in j): " << *j << endl; 
     delete j; // remove item from the heap
+    //cout << "*j (after delete):  " << *j << endl;
     // j still points to the memory in the heap (dangling pointer)
     // that can be a problem
     //cout << "access dangling pointer j: " << *j << endl; // bad! don't do this
