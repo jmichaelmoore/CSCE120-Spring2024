@@ -13,7 +13,8 @@ void printMenu();
 int main() {
   srand(time(NULL));
   
-  int ary[CAPACITY] = {0};
+//  int ary[CAPACITY] = {0};
+  int* ary = new int[CAPACITY];
   unsigned int size = 0;
   
   char menuChoice = ' ';

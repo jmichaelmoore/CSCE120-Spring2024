@@ -17,26 +17,42 @@ int main() {
   
   // define pointer to appropriate datatype (double)
   // allocate memory for the array with "new"
+  double* ary = new double[size];
 
   // initialize
+  for (unsigned int i=0; i<size; ++i) {
+    ary[i] = 0;
+  }
 
   // use the array - same as using an array on the heap
 
   for (unsigned int i=0; i<size; ++i) {
-    //cin >> ary[i]; // do this
+    cin >> ary[i]; // do this
     //cin >> *(ary + i); // don't do this
     //cin >> i[ary]; // don't do this
+    if (cin.fail()) {
+      cout << "failed to get integer value for index " << i << endl;
+      return 1;
+    }
   }
 
-  cout << "The max is: " << "replace with call to max" << endl; // add call to max
+  try {
+  cout << "The max is: " << max(ary, size) << endl; // add call to max
+  }
+  catch (std::invalid_argument &e) {
+    cout << e.what() << endl;
+  }
   cout << "Numbers: " << endl;
-  //printAry(ary, size);
+  printAry(ary, size);
   cout << endl;
+
   // release memory for the array with "delete[]"
+  delete [] ary;
+  ary = nullptr;
 
 }
 
-double max(double nums[], unsigned int size) {
+double max(const double nums[], unsigned int size) {
   if (size == 0) {
     throw std::invalid_argument("Cannot find max for an empty array");
   }
@@ -49,7 +65,7 @@ double max(double nums[], unsigned int size) {
   return max;
 }
 
-void printAry(double* nums, unsigned int size) {
+void printAry(cconst double* nums, unsigned int size) {
   if (size == 0) {
     cout << endl;
     return;
