@@ -7,6 +7,11 @@ using std::out_of_range;
 
 // always throw an out_of_range exception for any invalid index
 
+void makeAry(int*& ary, unsigned int size) {
+  delete [] ary;
+  ary = new int[size];
+}
+
 void loadRandom(int ary[], int size) {
   for (int i=0; i<size; ++i) {
     ary[i] = rand()%1000;
