@@ -14,7 +14,9 @@ int main() {
   srand(time(NULL));
   
 //  int ary[CAPACITY] = {0};
-  int* ary = new int[CAPACITY];
+  //int* ary = new int[CAPACITY];
+  int* ary = nullptr;
+  makeAry(ary, CAPACITY);
   unsigned int size = 0;
   
   char menuChoice = ' ';
@@ -101,7 +103,7 @@ int main() {
       break;
   }
   
-  
+  delete [] ary;
   }
   
   cout << endl << "Goodbye!" << endl;
