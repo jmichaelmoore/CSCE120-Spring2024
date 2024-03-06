@@ -4,10 +4,10 @@ using std::cin, std::cout, std::endl;
 
 // using column major ordering
 
-void makeary();
-void loadary();
-void printary();
-void releaseary();
+void makeary(char**&, unsigned int rows, unsigned int cols);
+void loadary(char**, unsigned int rows, unsigned int cols);
+void printary(const char*const*, unsigned int rows, unsigned int cols);
+void releaseary(char**&, unsigned int& rows, unsigned int& cols);
 
 int main() {
   srand(time(NULL));
@@ -15,24 +15,31 @@ int main() {
   // could read in rows and columns, but I'll hard code for this example
   unsigned int rows = 4;
   unsigned int cols = 3;
+  char** ary = nullptr;
 
   // allocate memory
-  makeary();
+  makeary(ary, rows, cols);
 
   // initialize
-  loadary();
+  loadary(ary, rows, cols);
 
   // use
-  printary();
+  printary(ary, rows, cols);
 
   // release memory
-  releaseary();
+  releaseary(ary, rows, cols);
 }
 
-void makeary() {
+void makeary(char**& ary, unsigned int rows, unsigned int cols) {
+  ary = nullptr;
+  ary = new char*[cols];
+
+  for (unsigned int col=0; col<cols; ++col) {
+    ary[col] = new char[rows];
+  }
 }
 
-void loadary() {
+void loadary(char** ary, unsigned int rows, unsigned int cols) {
   // can have col or row be the outer loop, it doesn't matter
   for (unsigned int col=0; col<cols; col++) {
     for (unsigned int row=0; row<rows; row++) {
@@ -49,7 +56,7 @@ void loadary() {
   }
 }
 
-void printary() {
+void printary(const char*const* ary, unsigned int rows, unsigned int cols) {
   // must print with row in outer loop to match our mental model
   for (unsigned int row=0; row<rows; row++) {
     for (unsigned int col=0; col<cols; col++) {
@@ -59,6 +66,14 @@ void printary() {
   }
 }
 
-void releaseary() {
+void releaseary(char**& ary, unsigned int& rows, unsigned int& cols) {
+  for (unsigned int col=0; col<cols; ++col) {
+    delete [] ary[col];
+    ary[col] = nullptr; // probably not needed but good practice
+  }
 
+  delete [] ary;
+  ary = nullptr;
+  rows = 0;
+  cols = 0;
 }
