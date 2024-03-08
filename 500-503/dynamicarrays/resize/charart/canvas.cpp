@@ -38,10 +38,7 @@ char** makeCanvas(unsigned int width, unsigned int height) {
 void resizeCanvas(char**& canvas, unsigned int& width,  unsigned int& height, unsigned int newWidth, unsigned int newHeight) {
   cout << "resizeCanvas" << endl;
   // make new array
-  //   - width and height might also decrease
   // copy
-  //   - make sure to stay in array bounds.
-  //   - hint use the smaller version of height and width for copy loop
   // delete old memory
   // update
 }
