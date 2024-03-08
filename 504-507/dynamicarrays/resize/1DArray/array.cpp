@@ -16,8 +16,9 @@ int main() {
   //int ary[CAPACITY] = {0};
   //int* ary = new int[CAPACITY];
   int* ary = nullptr;
-  makeAry(ary, CAPACITY);
+  //makeAry(ary, CAPACITY);
   unsigned int size = 0;
+  unsigned int capacity = 0;
   
   char menuChoice = ' ';
   
@@ -35,7 +36,7 @@ int main() {
     case 'L':
       cout << "Input number of random values to load: ";
       cin >> size;
-      loadRandom(ary, size);
+      loadRandom(ary, size, capacity);
       break;
     case 'I':
       cout << "Input value to insert: ";
@@ -43,7 +44,7 @@ int main() {
       cout << "Input index to insert: ";
       cin >> index;
       try {
-        insert(num, index, ary, size);
+        insert(num, index, ary, size, capacity);
         size++;
       }
       catch (out_of_range &e) {

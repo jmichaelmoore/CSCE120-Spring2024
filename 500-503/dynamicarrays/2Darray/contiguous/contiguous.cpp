@@ -42,8 +42,8 @@ void loadary(char* ary, unsigned int rows, unsigned int cols) {
       else { // lowercase
         val = rand()%26 + 'a';
       }
-      ary[col * cols + row] = val;
-      // alternatively *(ary + col * cols + row) = val;
+      ary[row * cols + col] = val;
+      // alternatively *(ary + row * cols + col) = val;
     }
     cout << endl;
   }
@@ -53,8 +53,8 @@ void printary(const char* ary, unsigned int rows, unsigned int cols) {
   // must print with row in outer loop to match our mental model
   for (unsigned int row=0; row<rows; row++) {
     for (unsigned int col=0; col<cols; col++) {
-      cout << ary[col * cols + row] << " ";
-      // alternatively cout << *(ary +col * cols + row) << " ";
+      cout << ary[row * cols + col] << " ";
+      // alternatively cout << *(ary +row * cols + col) << " ";
     }
     cout << endl;
   }
