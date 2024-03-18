@@ -20,12 +20,25 @@ using std::string;
   release that memory before creating new image
 */
 void makeImage(Pixel**& image, unsigned int width, unsigned int height) {
+  image = new Pixel*[width];
+  for (unsigned int col=0; col<width; ++col) {
+    image[col] = new Pixel[height];
+  }
 }
 
 /*
   Release all memory from the heap and update variables to represent an empty image
 */
 void releaseImage(Pixel**& image, unsigned int& width, unsigned int& height) {
+  for (unsigned int col=0; col<width; ++col) {
+    delete [] image[col];
+  }
+
+  delete [] image;
+
+  image = nullptr;
+  width = 0;
+  height = 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -51,6 +64,7 @@ void loadImage(const string filename, Pixel**& image,
   // we were able to open the file
 
   // TODO: release old memory
+  releaseImage(image, width, height);
 
   // read in Image type, for us it must be P3
   string type;
@@ -67,6 +81,7 @@ void loadImage(const string filename, Pixel**& image,
   ifs >> maxColor;
 
   // TODO: allocate memory for an image (an existing function might help)
+  makeImage(image, width, height);
 
   // read the color values into the 2D array in Column Major Order
   for (unsigned int row=0; row<height; ++row) {
@@ -172,7 +187,6 @@ void printMenu()
   cout << "----------------------------------" << endl;
   cout << " L: Load Image" << endl;
   cout << " S: Save Image" << endl;
-  cout << " X: Load Image removing noise" << endl;
   cout << " G: Greyscale image" << endl;
   cout << " D: Double image" << endl;
   cout << " H: Halve image" << endl;
