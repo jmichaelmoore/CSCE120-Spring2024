@@ -145,6 +145,28 @@ void grayscaleFilter(Pixel** image, unsigned int width, unsigned int height)
   (note that integer division allows this to work)
 */
 void doubleImage(Pixel**& image, unsigned int& width, unsigned int& height) {
+
+  unsigned int newWidth = width * 2;
+  unsigned int newHeight = height * 2;
+
+  Pixel** newImage = new Pixel*[newWidth];
+
+  for(unsigned int col = 0; col < newWidth; col++){
+    newImage[col] = new Pixel[newHeight];
+  }
+
+  for(unsigned int col = 0; col < newWidth; col++){
+    for(unsigned int row = 0; row < newHeight; row++){
+      newImage[col][row] = image[col/2][row/2];
+    }
+  }
+
+  releaseImage(image, width, height);
+
+  image = newImage;
+  width = newWidth;
+  height = newHeight;
+
 }
 
 /*
@@ -155,6 +177,27 @@ void doubleImage(Pixel**& image, unsigned int& width, unsigned int& height) {
   (note that integer division allows this to work)
 */
 void halveImage(Pixel**& image, unsigned int& width, unsigned int& height) {
+
+  unsigned int newWidth = width / 2;
+  unsigned int newHeight = height / 2;
+
+  Pixel** newImage = new Pixel*[newWidth];
+
+  for(unsigned int col = 0; col < newWidth; col++){
+    newImage[col] = new Pixel[newHeight];
+  }
+
+  for(unsigned int col = 0; col < newWidth; col++){
+    for(unsigned int row = 0; row < newHeight; row++){
+      newImage[col][row] = image[col*2][row*2];
+    }
+  }
+
+  releaseImage(image, width, height);
+
+  image = newImage;
+  width = newWidth;
+  height = newHeight;
 }
 
 /*
@@ -164,6 +207,35 @@ void halveImage(Pixel**& image, unsigned int& width, unsigned int& height) {
     if startCol, startRow, newWidth, or newHeight are invalid
 */
 void crop(Pixel**& image, unsigned int& width, unsigned int& height, unsigned int startCol, unsigned int startRow, unsigned int newWidth, unsigned int newHeight) {
+
+  if (newWidth > width) {
+    throw std::invalid_argument("newWidth cannot be greater than original width");
+  }
+
+  if (newHeight > height) {
+    throw std::invalid_argument("newHight cannot be greater than original height");
+  }
+
+  Pixel** newImage = new Pixel*[newWidth];
+
+  for (unsigned int col=0; col<newWidth; ++col) {
+    newImage[col] = new Pixel[newHeight];
+  }
+
+  // copy
+  for (unsigned int col=0; col<newWidth; ++col) {
+    for (unsigned int row=0; row<newHeight; ++row) {
+      newImage[col][row] = image[col+startCol][row+startRow];
+    }
+  }
+
+  // delete old memory
+  releaseImage(image, width, height);
+
+  // update
+  image = newImage;
+  width = newWidth;
+  height = newHeight; 
 }
 
 /*
@@ -173,6 +245,47 @@ void crop(Pixel**& image, unsigned int& width, unsigned int& height, unsigned in
     throw an invalid_argument exception
 */
 void noiseFilter(string file1, string file2, string file3, Pixel**& image, unsigned int& width, unsigned int& height) {
+  if (image != nullptr || width == 0 || height == 0) {
+    releaseImage(image, width, height);
+  }
+
+  Pixel** img1 = nullptr;
+  Pixel** img2 = nullptr;
+  Pixel** img3 = nullptr;
+  unsigned int chkWidth = width;
+  unsigned int chkHeight = height;
+
+  loadImage(file1, img1, width, height);
+  loadImage(file2, img2, chkWidth, chkHeight);
+  if (width != chkWidth || height != chkHeight) {
+    throw std::invalid_argument("files to filter are of different sizes");
+  }
+
+  loadImage(file3, img3, chkWidth, chkHeight);
+  if (width != chkWidth || height != chkHeight) {
+    releaseImage(img1, width, height);
+    throw std::invalid_argument("files to filter are of different sizes");
+  }
+
+  makeImage(image, width, height);
+
+  for (unsigned int row=0; row<height; ++row) {
+    for (unsigned int col=0; col<width; ++col) {
+      unsigned int medr = getMedian(img1[col][row].r, img2[col][row].r, img3[col][row].r);
+      unsigned int medg = getMedian(img1[col][row].g, img2[col][row].g, img3[col][row].g);
+      unsigned int medb = getMedian(img1[col][row].b, img2[col][row].b, img3[col][row].b);
+      image[col][row] = {medr, medg, medb};
+    }
+  }
+
+  releaseImage(img1, chkWidth, chkHeight);
+  chkWidth = width;
+  chkHeight = height;
+  releaseImage(img2, chkWidth, chkHeight);
+  chkWidth = width;
+  chkHeight = height;
+  releaseImage(img3, chkWidth, chkHeight);
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -279,5 +392,8 @@ unsigned int getMedian(unsigned int a, unsigned int b, unsigned int c) {
     // sort local copies, hint: use mySwap
     // only need three if statements
     // return middle value (i.e. b)
-    return 0;
+    if (b<a) mySwap(b, a);
+    if (c<a) mySwap(c, a);
+    if (c<b) mySwap(c, b);
+    return b;
 }
