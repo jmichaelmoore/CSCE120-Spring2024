@@ -1,23 +1,30 @@
+#include "Pixel.h"
 #include <stdexcept>
-class Pixel {
-private: // optional here since classes are private by default
 
-  unsigned short red;
-  unsigned short green;
-  unsigned short blue;
+Pixel::Pixel(unsigned short red, unsigned short green, unsigned short blue) : 
+red(red), green(green), blue(blue) {
+    if(red > 255 || green > 255 || blue > 255){
+    throw std::invalid_argument("Color outside of bounds");
+    }
+}
 
-public:
-    //parameterized constructor with r, g, & b values passed in
-    //copy constructor with Pixel passed in
-    //default constructor ? What to set r, g & b values to?
-
-  Pixel(unsigned short red, unsigned short green, unsigned short blue) : 
-    red(red), green(green), blue(blue) {
-      if(red > 255 || green > 255 || blue > 255){
+void Pixel::setRed(unsigned short int red) {
+    if(red > 255) {
         throw std::invalid_argument("Color outside of bounds");
-      }
-    };
+    }
+    this->red = red;
+  }
 
-  Pixel() : red(0), green(0), blue(0) {};
+void Pixel::setGreen(unsigned short int green) {
+    if(green > 255) {
+        throw std::invalid_argument("Color outside of bounds");
+    }
+    this->green = green;
+  }
 
-};
+void Pixel::setBlue(unsigned short int blue) {
+    if(blue > 255) {
+        throw std::invalid_argument("Color outside of bounds");
+    }
+    this->blue = blue;
+  }
