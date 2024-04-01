@@ -108,5 +108,18 @@ void Date::setYear(int year) {
 
   // add == definition
 
-  // add < definition
+  // add < declaration
+	bool operator<(const Date& rhs) {
+		if (this->year < rhs.year) {
+			return true;
+		} else if (this->year == rhs.year) {
+			if (this->month < rhs.month) {
+				return true;
+			}
+			else if (this->day < rhs.day) {
+				return true;
+			}
+		}
+		return false;
+	}
   // rhs right hand side     lhs left hand side

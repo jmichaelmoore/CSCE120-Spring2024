@@ -47,9 +47,31 @@ void Pixel::setBlue(unsigned short blue) {
 }
 
     // add =
+    Pixel& Pixel::operator=(const Pixel& rhs) { // rhs means right hand side
+        // note that we have access to private members of rhs
+        this->red = rhs.red;
+        this->blue = rhs.blue;
+        this->green = rhs.green;
+    }
 
     // add +
+    Pixel Pixel::operator+(const Pixel& rhs) {
+        Pixel retVal;
+        retVal.red = (this->red + rhs.red)/2;
+        retVal.green = (this->green + rhs.green)/2;
+        retVal.blue = (this->blue + rhs.blue)/2;
+    }
 
     // add - (unary)
+    void Pixel::operator-() {
+        this->red = 255-this->red;
+        this->green = 255-this->green;
+        this->blue = 255-this->blue;
+    }
 
     // add ==
+    bool Pixel::operator==(const Pixel& rhs) {
+        return (this->red == rhs.red &&
+                this->green == rhs.green &&
+                this->blue == rhs.blue);
+    }

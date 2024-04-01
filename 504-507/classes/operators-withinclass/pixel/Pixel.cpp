@@ -47,9 +47,33 @@ void Pixel::setBlue(unsigned short blue) {
 }
 
     // add =
+    Pixel& Pixel::operator=(const Pixel& rhs) { // rhs for right hand side
+        this->red = rhs.red;
+        this->green = rhs.green;
+        this->blue = rhs.blue;
+        return *this;
+    }
 
     // add +
+    Pixel Pixel::operator+(const Pixel& rhs) {
+        Pixel newColor;
+        newColor.red = (this->red + rhs.red)/2;
+        newColor.green = (this->green + rhs.green)/2;
+        newColor.blue = (this->blue + rhs.blue)/2;
+        return newColor;
+    }
 
     // add - (unary)
+    Pixel& Pixel::operator-() {
+        this->red = 255 - this->red;
+        this->green = 255 - this->green;
+        this->blue = 255 - this->blue;
+        return *this;
+    }
 
     // add ==
+    bool Pixel::operator==(const Pixel& rhs) {
+        return (this->red == rhs.red &&
+                this->green == rhs.green &&
+                this->blue = rhs.blue);
+    }

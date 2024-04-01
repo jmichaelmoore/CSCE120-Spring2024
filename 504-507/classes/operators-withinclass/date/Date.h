@@ -23,6 +23,7 @@ public:
   // add == declaration
 
   // add < declaration
+	bool operator<(const Date&);
   // rhs right hand side     lhs left hand side
 
 #endif

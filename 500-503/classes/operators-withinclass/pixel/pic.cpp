@@ -41,23 +41,22 @@ int main() {
     b.setGreen(0);
     b.setBlue(255);
     printPixel("b", b);
-/*
+
     cout << "d = a + b;" << endl;
     d = a + b;
     printPixel("d", d);
-*/
-/*
+
+
     cout << "-d;" << endl;
     -d;
     printPixel("d", d);
     printPixel("c", c);
     cout << "c == d: " << std::boolalpha << (c==d) << endl;
-*/
-/*
+
+
     cout << "c = d;" << endl;
     c = d; // note we did not have to implement this
     printPixel("d", d);
     printPixel("c", c);
     cout << "c == d: " << std::boolalpha << (c==d) << endl;
 }
-*/
