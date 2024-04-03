@@ -77,8 +77,3 @@ void Pixel::setBlue(unsigned short blue) {
               (this->green == rhs.green) &&
               (this->blue == rhs.blue);
     }
-
-std::ostream& operator<<(std::ostream& os, Pixel& p) {
-    os << "{" << p.getRed() << ", " << p.getGreen() << ", " << p.getBlue() << "}";
-    return os;
-}
