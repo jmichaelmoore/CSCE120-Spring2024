@@ -1,5 +1,4 @@
 #include <iostream>
-#include "functions.h"
 #include "DynamicIntArray.h"
 
 using namespace std;
