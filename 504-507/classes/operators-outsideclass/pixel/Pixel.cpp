@@ -9,11 +9,11 @@ Pixel::Pixel (unsigned short red, unsigned short green, unsigned short blue) :
         }
     }
 
-Pixel::Pixel(const Pixel& p) : red(p.red), green(p.green), blue(p.blue) {} // copy constructor
+Pixel::Pixel(const Pixel& p) : red(p.red), green(p.green), blue(p.blue) {} // copyructor
 
-Pixel::Pixel() : red(0), green(0), blue(0) {} // default constructor
+Pixel::Pixel() : red(0), green(0), blue(0) {} // defaultructor
 
-unsigned short Pixel::getRed() {
+unsigned short Pixel::getRed() const {
     return red;
 }
 
@@ -24,7 +24,7 @@ void Pixel::setRed(unsigned short red) {
     this->red = red;
 }
 
-unsigned short Pixel::getGreen() {
+unsigned short Pixel::getGreen() const {
     return green;
 }
 
@@ -35,7 +35,7 @@ void Pixel::setGreen(unsigned short green) {
     this->green = green;
 }
 
-unsigned short Pixel::getBlue() {
+unsigned short Pixel::getBlue() const {
     return blue;
 }
 
@@ -55,7 +55,7 @@ void Pixel::setBlue(unsigned short blue) {
     }
 
      // add +
-    Pixel Pixel::operator+(const Pixel& rhs) {
+    Pixel Pixel::operator+(const Pixel& rhs) const {
         Pixel r;
         r.red = (this->red + rhs.red) / 2;
         r.green = (this->green + rhs.green) / 2;
@@ -64,7 +64,7 @@ void Pixel::setBlue(unsigned short blue) {
     }
 
     // add - (unary)
-    Pixel& Pixel::operator-() {
+    Pixel& Pixel::operator-(){
         this->red = 255 - this->red;
         this->green = 255 - this->green;
         this->blue = 255 - this->blue;
@@ -72,8 +72,15 @@ void Pixel::setBlue(unsigned short blue) {
     }
 
     // add ==
-    bool Pixel::operator==(const Pixel& rhs) {
+    bool Pixel::operator==(const Pixel& rhs) const {
         return (this->red == rhs.red) &&
               (this->green == rhs.green) &&
               (this->blue == rhs.blue);
     }
+
+std::ostream& operator<<(std::ostream& os, const Pixel& p) {
+    os << "{" << p.getRed() << ", ";
+    os << p.getGreen() << ", ";
+    os << p.getBlue() << "}";
+    return os;
+}

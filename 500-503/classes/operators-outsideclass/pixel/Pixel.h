@@ -10,22 +10,24 @@ private: // optional here since classes are private by default
     unsigned short blue;
 public:
     Pixel (unsigned short red, unsigned short green, unsigned short blue);
-    Pixel(const Pixel& p); // copy constructor
-    Pixel(); // default constructor
+    Pixel(const Pixel& p); // copyructor
+    Pixel(); // defaultructor
     void setRed(unsigned short red);
-    unsigned short getRed();
+    unsigned short getRed() const;
     void setGreen(unsigned short green);
-    unsigned short getGreen();
+    unsigned short getGreen() const;
     void setBlue(unsigned short blue);
-    unsigned short getBlue();
+    unsigned short getBlue() const;
     // add =
     Pixel& operator=(const Pixel& rhs);
      // add +
-    Pixel operator+(const Pixel& rhs);
+    Pixel operator+(const Pixel& rhs) const;
     // add - (unary)
     Pixel& operator-();
     // add ==
-    bool operator==(const Pixel& rhs);
+    bool operator==(const Pixel& rhs) const;
 };
+
+std::ostream& operator<<(std::ostream&, const Pixel&);
 
 #endif
