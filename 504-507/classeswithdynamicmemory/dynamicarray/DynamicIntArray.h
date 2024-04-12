@@ -8,11 +8,15 @@ class DynamicIntArray {
     size_t size_;
     size_t capacity_;
     void increaseCapacity(size_t capacity = 0);
+    void build_copy(const DynamicIntArray& src);
 
 public:
     // constructors
     DynamicIntArray() : ary(nullptr), size_(0), capacity_(0) {}
     DynamicIntArray(size_t size, int val = 0);
+    DynamicIntArray(const DynamicIntArray& src);
+    ~DynamicIntArray();
+    DynamicIntArray& operator=(const DynamicIntArray& src);
 
     // capacity methods
     size_t size() const { return size_; }

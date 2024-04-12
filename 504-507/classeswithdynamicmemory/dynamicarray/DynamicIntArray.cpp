@@ -61,3 +61,32 @@ void DynamicIntArray::push_back(int val) {
     this->ary[size_] = val;
     size_++;
 }
+
+DynamicIntArray::~DynamicIntArray() {
+    delete [] ary;
+    size_ = 0;
+    capacity_ = 0;
+    ary = nullptr;
+}
+
+DynamicIntArray::DynamicIntArray(const DynamicIntArray& src) 
+        : ary(nullptr), size_(src.size_), capacity_(src.capacity_) {
+    build_copy(src);
+}
+
+DynamicIntArray& DynamicIntArray::operator=(const DynamicIntArray& src) {
+    if (this != &src) {
+        delete [] this->ary;
+        this->size_ = src.size_;
+        this->capacity_ = src.capacity_;
+        build_copy(src);
+    }
+    return *this;
+}
+
+void DynamicIntArray::build_copy(const DynamicIntArray& src) {
+    this->ary = new int[this->capacity_];
+    for (size_t i=0; i<this->size_; ++i) {
+        this->ary[i] = src.ary[i];
+    }
+}
