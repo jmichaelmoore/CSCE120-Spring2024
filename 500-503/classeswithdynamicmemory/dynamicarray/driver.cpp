@@ -3,30 +3,45 @@
 
 using namespace std;
 
-void printArray(const DynamicIntArray& ary);
+void printArray(string label, const DynamicIntArray& ary);
 
 int main() {
   // declare/define instance
   DynamicIntArray a;
-  printArray(a);
+  printArray("a", a);
 
   DynamicIntArray b(3, 7);
-  printArray(b);
+  printArray("b", b);
 
   DynamicIntArray c(5);
-  printArray(c);
+  printArray("c", c);
 
   c.at(2) = 2;
   c[0] = 9;
 
-  printArray(c);
+  printArray("c", c);
 
   b.push_back(1);
 
-  printArray(b);
+  printArray("b", b);
+
+  DynamicIntArray d(b);
+
+  printArray("d", d);
+
+  a = d;
+
+  printArray("a",a);
+
+  a.at(a.size() -1) = 11;
+
+  printArray("d",d);
+  printArray("a", a);
+
 }
 
-void printArray(const DynamicIntArray& ary) {
+void printArray(string label, const DynamicIntArray& ary) {
+  cout << label << endl;
   if (ary.empty()) {
     cout << "Empty!" << endl;
   }
