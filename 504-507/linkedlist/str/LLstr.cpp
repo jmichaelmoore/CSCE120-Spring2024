@@ -35,6 +35,14 @@ void LLstr::print(std::ostream& os) const {
     }
 }
 
+void LLstr::printReverse(std::ostream& os) const {
+    Node* cur = tail;
+    while (cur != nullptr) {
+        os << cur->letter;
+        cur = cur->prev;
+    }
+}
+
 LLstr::LLstr(const std::string& src) : head(nullptr), tail(nullptr) { // copy std::string
     for (size_t i=0; i<src.size(); ++i) {
         insertBack(src.at(i));
@@ -52,4 +60,38 @@ LLstr::LLstr(const char* src) : head(nullptr), tail(nullptr) { // copy c-string
 std::ostream& operator<<(std::ostream& os, const LLstr& src) {
     src.print(os);
     return os;
+}
+
+Node* LLstr::find(const char& c) {
+    Node* cur = head;
+    while (cur != nullptr && cur->letter != c) {
+        cur = cur->next;
+    }
+    return cur;
+}
+
+bool LLstr::hasChar(const char& c) {
+    return find(c) != nullptr;
+}
+
+void LLstr::insertAfter(const char& valToAdd, const char& valToFind) {
+    Node* newNode = new Node(valToAdd);
+    if (head == nullptr) {
+        head = tail = newNode;
+    }
+    else {
+        Node* cur = find(valToFind);
+        if (cur == nullptr) {
+            cur = tail;
+        }
+        newNode->next = cur->next;
+        newNode->prev = cur;
+        if (cur->next = nullptr) { // new tail
+            tail = newNode;
+        }
+        else {
+            cur->next->prev = newNode;
+        }
+        cur->next = newNode;
+    }
 }

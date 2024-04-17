@@ -12,7 +12,6 @@ struct Node {
 class LLint {
     Node* head;
     Node* tail;
-    
   public:
     LLint() : head(nullptr), tail(nullptr) {}
 

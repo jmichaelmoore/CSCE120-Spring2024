@@ -9,7 +9,7 @@ void printTest(std::string label, const LLstr& l) {
     l.print();
     cout << '<' << endl;
     cout << '>';
-    //l.printReverse();
+    l.printReverse();
     cout << '<' << endl << endl;
 }
 
@@ -30,4 +30,6 @@ int main() {
     s3.insertBack('#');
     s3.insertFront('$');
     printTest("s3: add to front and back",s3);
+    cout << "s3 has r: " << s3.hasChar('r') << endl;
+    cout << "s3 has z: " << s3.hasChar('z') << endl;
 }
