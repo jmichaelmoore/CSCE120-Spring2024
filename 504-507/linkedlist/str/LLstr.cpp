@@ -86,7 +86,7 @@ void LLstr::insertAfter(const char& valToAdd, const char& valToFind) {
         }
         newNode->next = cur->next;
         newNode->prev = cur;
-        if (cur->next = nullptr) { // new tail
+        if (cur->next == nullptr) { // new tail
             tail = newNode;
         }
         else {
@@ -94,4 +94,46 @@ void LLstr::insertAfter(const char& valToAdd, const char& valToFind) {
         }
         cur->next = newNode;
     }
+}
+
+void LLstr::insertBefore(const char& valToAdd, const char& valToFind) {
+    Node* newNode = new Node(valToAdd);
+    if (head == nullptr) {
+        head = tail = newNode;
+    }
+    else {
+        Node* cur = find(valToFind);
+        if (cur == nullptr) {
+            cur = head;
+        }
+        newNode->next = cur;
+        newNode->prev = cur->prev;
+        if (cur == head) { // cur->prev == nullptr
+            head = newNode;
+        }
+        else {
+            cur->prev->next = newNode;
+        }
+        cur->prev = newNode;
+    }
+}
+
+void LLstr::remove(const char& c) {
+    Node* cur = head;
+    cur = find(c);
+    if (cur != nullptr) {
+        if (cur->next == nullptr ) { // cur is tail
+            tail = cur->prev;
+        }
+        else {
+            cur->next->prev = cur->prev;
+        }
+        if (cur->prev == nullptr) { // cur is head
+            head = cur->next;
+        }
+        else {
+            cur->prev->next = cur->next;
+        }
+    }
+    delete cur;
 }

@@ -74,6 +74,7 @@ bool LLstr::hasChar(const char& val) {
     return find(val) != nullptr;
 }
 
+
 void LLstr::insertAfter(const char& valToAdd, const char& valToFind) {
     Node* newNode = new Node(valToAdd);
     if (head == nullptr) {
@@ -84,12 +85,64 @@ void LLstr::insertAfter(const char& valToAdd, const char& valToFind) {
         while (cur != nullptr && cur->letter != valToFind) {
             cur = cur->next;
         }
-        if (cur != nullptr) {
-            newNode->next = cur->next;
-            newNode->prev = cur;
+        if (cur == nullptr) {
+            cur = tail;
+        }
+        newNode->next = cur->next;
+        newNode->prev = cur;
+        if (cur == tail) { // if cur->next == nullptr
+            tail = newNode;
+        }
+        else {
             cur->next->prev = newNode;
-            cur->next = newNode;
-            }
-        // else add to end
+        }
+        cur->next = newNode;
     }
+}
+
+void LLstr::insertBefore(const char& valToAdd, const char& valToFind) {
+    Node* newNode = new Node(valToAdd);
+    if (head == nullptr) {
+        head = tail = newNode;
+    }
+    else {
+        Node* cur = head;
+        while (cur != nullptr && cur->letter != valToFind) {
+            cur = cur->next;
+        }
+        if (cur == nullptr) {
+            cur = head;
+        }
+        newNode->next = cur;
+        newNode->prev = cur->prev;
+        if (cur == head) { // cur->prev == nullptr
+            head = newNode;
+        }
+        else {
+            cur->prev->next = newNode;
+        }
+        cur->prev = newNode;
+    }
+}
+
+void LLstr::remove(const char& c) {
+    Node* cur = head;
+    while (cur && cur->letter != c) {
+        cur = cur->next;
+    }
+    if (cur != nullptr) {
+        if (cur->prev == nullptr) { // removing head
+            head = cur->next;
+        }
+        else {
+            cur->prev->next = cur->next;
+        }
+        if (cur->next == nullptr) {
+            tail = cur->prev;
+        }
+        else {
+            cur->next->prev = cur->prev;
+        }
+    }
+    delete cur;
 }

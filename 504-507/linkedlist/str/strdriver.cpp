@@ -32,5 +32,16 @@ int main() {
     printTest("s3: add to front and back",s3);
     cout << "s3 has r: " << s3.hasChar('r') << endl;
     cout << "s3 has z: " << s3.hasChar('z') << endl;
-
+    s3.insertAfter('=','o');
+    printTest("s3: add = after o", s3);
+    s3.insertAfter('k', 'z');
+    printTest("s3: insert k after z", s3);
+    s3.insertBefore('?','W');
+    printTest("s3: insert ? before W", s3);
+    s3.insertBefore('-', 'z');
+    printTest("s3: insert - before z",s3);
+    s3.remove('W');
+    printTest("s3: remove W", s3);
+    s3.remove('z');
+    printTest("s3: remove z", s3);
 }
