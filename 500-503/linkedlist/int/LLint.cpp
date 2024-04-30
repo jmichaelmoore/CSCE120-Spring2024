@@ -79,3 +79,15 @@ void LLint::print(std::ostream& os) const {
         cur = cur->next;
     }
 }
+
+void LLint::printReverse(std::ostream& os) {
+    printRecursive(head, os);
+}
+
+void LLint::printRecursive(Node* node, std::ostream& os) {
+    if (node == nullptr) {
+        return;
+    }
+    printRecursive(node->next);
+    os  << node->data << endl;
+}

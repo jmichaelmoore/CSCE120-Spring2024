@@ -12,6 +12,7 @@ struct Node {
 class LLint {
     Node* head;
     Node* tail;
+    void printRecursive(Node* n, std::ostream& os = std::cout);
     
   public:
     LLint() : head(nullptr), tail(nullptr) {}
@@ -23,6 +24,7 @@ class LLint {
     void insertBefore(const int& valToInsert, const int& valToFind);
 
     void print(std::ostream& = std::cout) const;
+    void printReverse(std::ostream& = std::cout);
 };
 
 std::ostream& operator<<(std::ostream&, const LLint&);

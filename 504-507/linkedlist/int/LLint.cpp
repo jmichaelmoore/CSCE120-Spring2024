@@ -80,6 +80,18 @@ void LLint::print(std::ostream& os) const {
     }
 }
 
+void LLint::printReverse(std::ostream& os){
+    printRecursive(head, os);
+}
+
+void LLint::printRecursive(Node* node, std::ostream& os) {
+    if (node == nullptr) {
+        return;
+    }
+    printRecursive(node->next, os);
+    cout << node->data << endl;
+}
+
 void LLint::clear() {
     while (head != nullptr) {
         Node* nodeToDelete = head;
